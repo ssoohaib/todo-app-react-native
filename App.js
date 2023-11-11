@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, FlatList, Pressable } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Pressable } from 'react-native';
 import InputField from './components/InputField'
 import Item from './components/Item';
-
+import colorPallete from './resources/ColorPallete';
 
 export default function App() {
   const [itemList,setItemList]=useState([]);
@@ -31,11 +31,14 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Pressable onPress={toggleInputVisibility}>
-        <View style={styles.addItemBtn}>
-          <Text>lol</Text>
-        </View>
-      </Pressable>
+      <View style={styles.addItemBtnContainer}>
+        <Text style={styles.title}>ToDo</Text>
+        <Pressable onPress={toggleInputVisibility} >
+          <View style={styles.addItemBtn}>
+            <Text style={styles.addItemBtnText}>+</Text>
+          </View>
+        </Pressable>
+      </View>
       <InputField visibility={inputVisibility} toggleVisibility={toggleInputVisibility} addItem={handleAddItem} />
 
 
@@ -59,11 +62,37 @@ const styles = StyleSheet.create({
     flex: 1,
     padding:32,
     paddingTop:64,
+    backgroundColor:colorPallete.backgroundColor
 
   },
+  addItemBtnContainer:{
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'space-between',
+    paddingBottom:16,
+
+    borderColor:colorPallete.primary,
+    borderBottomWidth:2
+  },
+  title:{
+    color:colorPallete.primary,
+    fontSize:32,
+    fontWeight:'bold'
+  },  
   addItemBtn:{
-    borderColor:'red',
+    // padding:16,
+    alignItems:'center',
+    height:50,
+    width:50,
     borderWidth:1,
+    backgroundColor:colorPallete.primary,
+    borderRadius:16,
+    // borderColor:colorPallete.secondary,
+  },
+  addItemBtnText:{
+    color:colorPallete.textColor,
+    fontSize:32,
+    fontWeight:'bold'
   },
   lower:{
     flex:1,

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { StyleSheet, ToastAndroid, View, TextInput, Button, Modal, Pressable, Text } from 'react-native'
+import { StyleSheet, ToastAndroid, View, TextInput, Modal, Pressable, Text } from 'react-native'
+import colorPallete from '../resources/ColorPallete';
 
 export default function InputField(props) {
     const [item, setItem]=useState('');
@@ -18,16 +19,16 @@ export default function InputField(props) {
     return (
       <Modal visible={props.visibility} animationType='slide'>
         <View style={styles.upper}>
-            <TextInput value={item} onChangeText={handleTextChange} style={styles.textInput} placeholder='Enter Item'></TextInput>
+            <TextInput placeholderTextColor={colorPallete.textColor} value={item} onChangeText={handleTextChange} style={styles.textInput} placeholder='Enter Item'></TextInput>
             <View style={styles.btnSection}>
-                <Pressable onPress={props.toggleVisibility}>
-                  <View style={styles.cancelBtn} >
-                    <Text>Cancel</Text>
+                <Pressable style={styles.cancelBtn} onPress={props.toggleVisibility}>
+                  <View>
+                    <Text style={styles.btnText}>Cancel</Text>
                   </View>
                 </Pressable>
-                <Pressable onPress={handleAddItem}>
-                  <View style={styles.addBtn}>
-                    <Text>Add</Text>
+                <Pressable style={styles.addBtn} onPress={handleAddItem}>
+                  <View >
+                    <Text style={styles.btnText}>Add</Text>
                   </View>
                 </Pressable>
             </View>
@@ -43,34 +44,52 @@ const styles = StyleSheet.create({
       alignItems:'center',
       justifyContent:'center',
       padding:32,
+      backgroundColor:colorPallete.secondary,
   
     },
     textInput:{
       width:'100%',
       padding:16,
       marginBottom:16,
-      borderColor:'gray',
-      borderWidth:1,
+      borderColor:colorPallete.backgroundColor,
+      borderWidth:2,
       borderRadius:16,
+      fontSize:16,
+      color:colorPallete.textColor
 
     },
     btnSection:{
       flexDirection:'row',
+      width:'100%',
+
+      // borderWidth:1,
+      // borderColor:'red',
 
     },
     addBtn:{
-      borderWidth:1,
-      borderColor:'gray',
+      flex:1,
+      alignItems:'center',
+      // borderWidth:1,
+      // borderColor:'gray',
       borderRadius:16,
       padding:16,
-
+      backgroundColor:colorPallete.primary,
     },
     cancelBtn:{
+      flex:1,
       borderWidth:1,
-      borderColor:'gray',
-      borderWidth:1,
-      borderColor:'gray',
+      alignItems:'center',
+      // borderWidth:1,
+      // borderColor:'gray',
       borderRadius:16,
       padding:16,
+      backgroundColor:colorPallete.backgroundColor,
+
+      marginRight:16,
+    },
+    btnText:{
+      color:colorPallete.textColor,
+      fontSize:16,
+      // fontWeight:'bold'
     }
   });
