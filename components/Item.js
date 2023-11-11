@@ -1,11 +1,18 @@
 import React from 'react'
-import { StyleSheet, View, Text, Pressable } from 'react-native'
+import { StyleSheet, ToastAndroid, View, Text, Pressable } from 'react-native'
 import colorPallete from '../resources/ColorPallete';
 
 export default function Item(props) {
+
+  const handlePress=()=>{
+    props.deleteItem(props.id)
+    ToastAndroid.show('Removed', ToastAndroid.SHORT);
+
+  }
+
   return (
     <View style={styles.listItem}>
-      <Pressable android_ripple={{color:colorPallete.primary}} onPress={()=>props.deleteItem(props.id)}>
+      <Pressable android_ripple={{color:colorPallete.primary}} onPress={handlePress}>
         <Text style={styles.listItemText}>{props.text}</Text>
       </Pressable>
     </View>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { StyleSheet, Text, View, FlatList, Pressable } from 'react-native';
+import { StyleSheet, ToastAndroid, Text, View, FlatList, Pressable } from 'react-native';
 import InputField from './components/InputField'
 import Item from './components/Item';
 import colorPallete from './resources/ColorPallete';
@@ -12,12 +12,15 @@ export default function App() {
     // Trim the item to remove leading and trailing spaces
     const trimmedItem = item.trim();
 
-    if (item.length>0 && trimmedItem.length>0)
+    if (item.length>0 && trimmedItem.length>0){
       setItemList((currentItem)=>[
         ...currentItem,
         {id:Math.random().toString(), text:item}
       ])
-    setInputVisibility(false)
+      setInputVisibility(false)
+    }else{
+      ToastAndroid.show('Enter something', ToastAndroid.SHORT);
+    }
   }
 
   const handleDeleteItem = (id)=>{
