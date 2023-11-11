@@ -15,13 +15,19 @@ export default function InputField(props) {
         // ToastAndroid.show('lol', ToastAndroid.SHORT);
     }
 
+    const handleCancel=()=>{
+      props.toggleVisibility()
+      setItem('')
+
+    }
+
 
     return (
       <Modal visible={props.visibility} animationType='slide'>
         <View style={styles.upper}>
             <TextInput placeholderTextColor={colorPallete.textColor} value={item} onChangeText={handleTextChange} style={styles.textInput} placeholder='Enter Item'></TextInput>
             <View style={styles.btnSection}>
-                <Pressable style={styles.cancelBtn} onPress={props.toggleVisibility}>
+                <Pressable style={styles.cancelBtn} onPress={handleCancel}>
                   <View>
                     <Text style={styles.btnText}>Cancel</Text>
                   </View>

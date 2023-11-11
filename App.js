@@ -9,10 +9,14 @@ export default function App() {
   const [inputVisibility, setInputVisibility]=useState(false);
 
   const handleAddItem=(item)=>{
-    setItemList((currentItem)=>[
-      ...currentItem,
-      {id:Math.random().toString(), text:item}
-    ])
+    // Trim the item to remove leading and trailing spaces
+    const trimmedItem = item.trim();
+
+    if (item.length>0 && trimmedItem.length>0)
+      setItemList((currentItem)=>[
+        ...currentItem,
+        {id:Math.random().toString(), text:item}
+      ])
     setInputVisibility(false)
   }
 
